@@ -1,0 +1,12 @@
+# Set PATH, CDPATH, EDITOR, etc.
+
+PATH=$PATH:$HOME/local/bin
+
+######## MONGO
+PATH=$PATH:/opt/javascript/mongo/2.6.1/bin/
+
+######## Composer
+PATH=$PATH:$HOME/.composer/vendor/bin/
+
+# export NODE_PATH
+export PATH

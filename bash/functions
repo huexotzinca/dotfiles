@@ -1,0 +1,134 @@
+# vim: syntax=sh st=2 sw=2
+###################
+## Directories
+###################
+
+# Create and change to $1 directory
+function take() {
+  # Empty argument?
+  if [[ -z "$1" ]]; then
+    echo -e "$RED (^~^)' You must be enter a Folder Name for create and change to this.$CRESET"
+  else
+    mkdir -p "$1"
+    cd "$1"
+  fi
+}
+
+###################
+## SYSTEM
+###################
+
+# Find - All
+function f() {
+  # Empty argument?
+  if [[ -z "$1" ]]; then
+    echo -e "$RED (^~^)' I need a Regex to Search.$CRESET"
+  else
+    # path to make the Search
+    if [ -z "$2" ]; then
+      echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] in the current folder...$CRESET"
+      find . -iname "$1" -exec ls --color=auto -lad {} \; 
+    else
+      echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] in \"$EBLUE$2$YELLOW\" folder...$CRESET"
+      find $2 -iname "$1" -exec ls --color=auto -lad {} \; 
+    fi
+  fi
+}
+
+# Find - File
+function ff() {
+  # Empty argument?
+  if [[ -z "$1" ]]; then
+    echo -e "$RED (^~^)' I need a Regex to Search.$CRESET"
+  else
+    # path to make the Search
+    if [[ -z "$2" ]]; then
+      echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] file in the current folder...$CRESET"
+      find . -type f -iname "$1" -exec ls --color=auto -la {} \; 
+    else
+      echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] file in \"$EBLUE$1$YELLOW\" folder...$CRESET"
+      find $2 -type f -iname "$1" -exec ls --color=auto -la {} \; 
+    fi
+  fi
+}
+
+# Find - Folder
+function fl() {
+  # Empty argument?
+  if [[ -z "$1" ]]; then
+    echo -e "$RED (^~^)' I need a Regex to Search.$CRESET"
+  else
+    # path to make the Search
+    if [[ -z "$2" ]]; then
+      echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] folder in the current folder...$CRESET"
+      find . -type d -iname "$1" -exec ls --color=auto -lad {} \; 
+    else
+      echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] folder in \"$EBLUE$1$YELLOW\" folder...$CRESET"
+      find $2 -type d -iname "$1" -exec ls --color=auto -lad {} \; 
+    fi
+  fi
+}
+
+# copy data
+function cfile() {
+  # Empty argument?
+  if [[ -z "$1" ]]; then
+    echo -e "$RED (^~^)' I need a File name to copy.$CRESET"
+  else
+    cat $1 | $HUXCLIP_CMD
+  fi
+}
+
+# Kill $1 named process
+function killnamed() {
+  # Empty argument?
+  if [[ -z "$1" ]]; then
+    echo -e "$RED (^~^)' I need a pattern Name of process to kill.$CRESET"
+  else
+    ps ax | grep $1 | cut -d ' ' -f 2 | xargs kill
+  fi
+}
+
+###################
+## UTILITIES
+###################
+
+# Open file in Nautilus or other; this use xdg-open (sudo apt-get install xdg-open) or gnome-open
+function oo () {
+  # Empty argument?
+  if [[ -z "$1" ]]; then
+    $HUXOPEN_CMD . &
+  else
+    if [ [ -d $1 ] || [ -f $1 ] ]; then
+      $HUXOPEN_CMD $1 &
+    else
+      echo -e "$RED (^~^)' Path or File doesn't exist$CRESET"
+    fi
+  fi
+}
+
+# Create simple HTTP server from current folder ([$port|$path, $port|path])
+function server() {
+  local port="3300"
+  local path='.'
+  local current_dir=$(pwd)
+
+  if [[ ! -z "$1" ]]; then
+    if [[ $1 =~ ^-?[0-9]+$ ]]; then
+      port=$1
+    else
+      path="$1"
+    fi
+  fi
+
+  if [[ ! -z "$2" ]]; then
+    if [[ $2 =~ ^-?[0-9]+$ ]]; then
+      port=$2
+    else
+      path="$2"
+    fi
+  fi
+
+  $HUXOPEN_CMD http://localhost:$port
+  (cd $path && python -m SimpleHTTPServer $port)
+}

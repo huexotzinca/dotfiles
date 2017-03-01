@@ -1,0 +1,85 @@
+# vim: syntax=sh st=2 sw=2
+## Folders
+alias dsk="cd ~/Desktop/" 
+alias pj="cd ~/Projects/"
+alias dv="cd ~/Prospects/"
+alias lb="cd ~/Lab"
+alias dc="cd ~/Documents"
+alias dl="cd ~/Downloads"
+alias dx="cd ~/Dropbox"
+alias tmp="cd ~/tmp"
+
+## Command Enhancements
+alias ..="cd .."
+alias ...="cd ../.."
+
+# enable color support of ls and also add handy aliases
+if [[ -x /usr/bin/dircolors ]]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+# Common -- Some are from Damian Conway
+alias a='ls -A' # -A all except literal . ..
+alias la="ls -A -l -G"
+alias h='history'
+alias l.='ls -d .[^.]*'
+alias l='ls -lhGt'  # -l long listing, most recent first
+alias lh='ls -lh'
+alias ll='ls -lhG'  # -l long listing, human readable, no group info
+alias lt='ls -lt' # sort with recently modified first
+alias md='mkdir -p'
+alias k9="killall -9"
+
+#################
+#### TOOLS ######
+#################
+alias cpwd="pwd | tr -d \"\r\n\"| clipit"
+alias cls="ls | clipit"
+alias tree="tree -I 'bower_components|node_modules|tmp|.tmp|.sass-cache|vendor'"
+
+#################
+### SYSTEM ######
+#################
+alias ehosts="sudo vim /etc/hosts"
+# Processes
+alias tu='top -o cpu' # cpu
+alias tm='top -o vsize' # memory
+#CPU
+alias memtop='ps -A --sort -rss | head -11'
+alias cputop='ps -A --sort -%cpu | head -11'
+
+##################
+###### PHP #######
+##################
+# ARTISAN (Laravel)
+alias artisan='php artisan'
+alias ag:key='php artisan key:generate'
+alias ag:m='php artisan generate:model'
+alias ag:v='php artisan generate:view'
+alias ag:c='php artisan generate:controller'
+alias ag:r='php artisan generate:resource'
+alias ag:t='php artisan generate:test'
+alias ag:mig='php artisan generate:migration'
+alias ag:sc='php artisan generate:scaffold'
+alias ag:fm='php artisan generate:form'
+alias ag:sd='php artisan generate:seed'
+alias ab:i='php artisan bundle:install'
+alias ag:help='alias | grep -v "ag:help" |  grep -E "artisan|ag:|ab:"'
+alias ag:h='ag:help'
+
+# phpspec
+alias phpspec='./vendor/bin/phpspec'
+
+# behat
+alias behat='./vendor/bin/behat'
+
+##################
+##### PYTHON #####
+##################
+alias huxpy='. ~/.huxpy/bin/activate'

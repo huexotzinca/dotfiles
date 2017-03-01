@@ -1,0 +1,86 @@
+# vim: syntax=sh st=2 sw=2
+get_pwd(){
+  echo "$C_CYAN\w$C_RESETCOLOR"
+}
+
+get_base_name(){
+  echo "$C_GREEN\u$C_RESETCOLOR"
+}
+
+get_is_ok(){
+  echo "\`if [[ \$? = 0 ]]; then echo \"\"; else echo \"$C_RED😖$C_RESETCOLOR\"; echo \n fi\` "
+}
+
+get_git_prompt_info() {
+  echo '$(git branch &>/dev/null;\
+if [[ $? -eq 0 ]]; then \
+  echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
+  if [[ "$?" -eq "0" ]]; then \
+    # @4 - Clean repository - nothing to commit
+    echo "'$C_PURPLEBOLD'"$(__git_ps1 " [%s]"); \
+  else \
+    # @5 - Changes to working tree
+    echo "'$C_REDBOLD'"$(__git_ps1 " [%s]"); \
+  fi) '$C_RESETCOLOR'"; \
+fi)'
+}
+
+get_prefix(){
+  echo "\$( [[ \$(whoami | id -u) -eq 1000 ]] || echo \"$(get_base_name) \" )"
+}
+
+iam_root(){
+  echo "\$( ([[ \$(whoami | id -u) -eq 0 ]] && echo \"$C_RED #\" ) || echo \"\" )"
+}
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+export PS1="$(get_is_ok)\n $(get_prefix)$C_BLACKBOLD\t $(get_pwd)$(get_git_prompt_info)\n$C_YELLOW$(iam_root) ↪ $C_RESETCOLOR"
+
+# Runs Before to Exit (in this case is used to set window Title)
+export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME} : ${PWD/$HOME/~}\007"'
+
+# Sync config file from Dropbox ## this has been removed you need linked in the home folder
+if [[ -f "$HUXBASHRC_DIRNAME/ssh/linux.config" ]]; then
+  cp $HUXBASHRC_DIRNAME/ssh/linux.config $HOME/.ssh/config
+fi
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
+
+# Autocomplete Grunt commands
+if [[ $(type -p gdate) ]]; then
+  which grunt > /dev/null && eval "$(grunt --completion=bash)"
+fi
+
+HUXOPEN_CMD=xdg-open
+if [[ $(type -p xdg-open) ]]; then
+  HUXOPEN_CMD=xdg-open
+else
+  HUXOPEN_CMD=gnome-open
+fi
+
+HUXCLIP_CMD=clipit
+if [[ $(type -p parcellite) ]]; then
+  HUXCLIP_CMD=parcellite
+elif [[ $(type -p xclip) ]]; then
+  HUXCLIP_CMD='xclip -sel clip'
+else
+  HUXCLIP_CMD=clipit
+fi
+
+HUXSUBL_CMD=sublime_text
+if [[ $(type -p subl) ]]; then
+  HUXSUBL_CMD=subl
+else
+  if [[ $(type -p sublime) ]]; then
+    HUXSUBL_CMD=sublime
+  else
+    HUXSUBL_CMD=sublime_text
+  fi
+fi
