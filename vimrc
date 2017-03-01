@@ -15,10 +15,10 @@ call plug#begin('~/.vim/plugged')
   " Powerline faster version, but with more additions and themes
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  
+  Plug 'https://github.com/tpope/vim-surround'
 
-	Plug 'https://github.com/tpope/vim-surround'
-
-	Plug 'https://github.com/tpope/vim-eunuch'
+  Plug 'https://github.com/tpope/vim-eunuch'
 
   Plug 'https://github.com/jiangmiao/auto-pairs'
 
