@@ -1,7 +1,5 @@
 # vim: syntax=config st=2 sw=2
 [user]
-  email = dev@neftalibautista.com
-  name  = Neftali Bautista
 
 [alias]
   # View the current working tree status using the short format
@@ -96,3 +94,6 @@
 
 [url "git://gist.github.com/"]
   insteadOf = "gist:"
+[user]
+	name = Neftali Bautista
+	email = dev@neftalibautista.com

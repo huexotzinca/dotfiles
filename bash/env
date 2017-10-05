@@ -3,10 +3,12 @@
 PATH=$PATH:$HOME/local/bin
 
 ######## MONGO
-PATH=$PATH:/opt/javascript/mongo/2.6.1/bin/
+# PATH=$PATH:/opt/javascript/mongo/2.6.1/bin/
 
 ######## Composer
 PATH=$PATH:$HOME/.composer/vendor/bin/
 
 # export NODE_PATH
 export PATH
+
+export EDITOR="vimx --servername ${HUXSERVER_NAME}"

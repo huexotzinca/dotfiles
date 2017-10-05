@@ -1,0 +1,8 @@
+local
+sublime_text_3
+
+vim/**
+!vim/autoload/plug.vim
+
+bash/**
+!bash/*.example

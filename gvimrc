@@ -9,6 +9,8 @@ set background=light
 
 set nofoldenable
 
+highlight Normal guibg=NONE ctermbg=NONE
+
 colorscheme desert
 
 highlight Search guibg=black guifg=yellow gui=bold

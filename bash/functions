@@ -27,10 +27,10 @@ function f() {
     # path to make the Search
     if [ -z "$2" ]; then
       echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] in the current folder...$CRESET"
-      find . -iname "$1" -exec ls --color=auto -lad {} \; 
+      find . -iname "$1" -exec ls -lad {} \; 
     else
       echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] in \"$EBLUE$2$YELLOW\" folder...$CRESET"
-      find $2 -iname "$1" -exec ls --color=auto -lad {} \; 
+      find $2 -iname "$1" -exec ls -lad {} \; 
     fi
   fi
 }
@@ -44,10 +44,10 @@ function ff() {
     # path to make the Search
     if [[ -z "$2" ]]; then
       echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] file in the current folder...$CRESET"
-      find . -type f -iname "$1" -exec ls --color=auto -la {} \; 
+      find . -type f -iname "$1" -exec ls -la {} \; 
     else
       echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] file in \"$EBLUE$1$YELLOW\" folder...$CRESET"
-      find $2 -type f -iname "$1" -exec ls --color=auto -la {} \; 
+      find $2 -type f -iname "$1" -exec ls -la {} \; 
     fi
   fi
 }
@@ -61,21 +61,11 @@ function fl() {
     # path to make the Search
     if [[ -z "$2" ]]; then
       echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] folder in the current folder...$CRESET"
-      find . -type d -iname "$1" -exec ls --color=auto -lad {} \; 
+      find . -type d -iname "$1" -exec ls -lad {} \; 
     else
       echo -e "$YELLOW >>> Searching [$BLUE$1$YELLOW] folder in \"$EBLUE$1$YELLOW\" folder...$CRESET"
-      find $2 -type d -iname "$1" -exec ls --color=auto -lad {} \; 
+      find $2 -type d -iname "$1" -exec ls -lad {} \; 
     fi
-  fi
-}
-
-# copy data
-function cfile() {
-  # Empty argument?
-  if [[ -z "$1" ]]; then
-    echo -e "$RED (^~^)' I need a File name to copy.$CRESET"
-  else
-    cat $1 | $HUXCLIP_CMD
   fi
 }
 

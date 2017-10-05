@@ -1,7 +1,9 @@
+# vim: syntax=sh st=4 sw=4
 HUXBASHRC_PATH="${BASH_ARGV[0]}"
 HUXBASHRC_DIRNAME="$(dirname $HUXBASHRC_PATH)"
 HUXBASH_DIRNAME="$HUXBASHRC_DIRNAME/bash"
 HUXSCM_DIRNAME="$HUXBASHRC_DIRNAME/scm"
+HUXSERVER_NAME="huexotzin.ca"
 
 if [ -f $HUXBASH_DIRNAME/colors ]; then
     . $HUXBASH_DIRNAME/colors

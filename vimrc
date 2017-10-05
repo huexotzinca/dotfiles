@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'https://github.com/tpope/vim-rails'
   Plug 'https://github.com/tomtom/checksyntax_vim/'
   Plug 'https://github.com/mustache/vim-mustache-handlebars'
+  "Plug 'git@bitbucket.org:huexotzinca/vim-laravel.git'
 
   " Theme plugins
   Plug 'https://github.com/altercation/vim-colors-solarized'
@@ -230,9 +231,6 @@ map <leader>y "*y
 " Switch between the last two files
 nmap <leader><leader> <C-^><CR>
 
-"Auto change directory to match current file ,cd
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-
 " Stop F1 
 nnoremap <F1>  <NOP>
 inoremap <F1>  <NOP>
@@ -244,7 +242,10 @@ noremap <down> <NOP>
 noremap <up> <NOP>
 noremap <right> <NOP>
 
-nmap <M-S> :%s/\<<C-R><C-W>\>//g<left><left>
+" Find in file all words under the cursor.
+nmap <leader>s :%s/\<<C-R><C-W>\>/
+" And replace with
+nmap <leader><leader>s :%s/\<<C-R><C-W>\>//g<left><left>
 
 " Insert a hash rocket with <c-l>
 imap <c-l> <space>=><space>
@@ -356,6 +357,7 @@ vmap <C-E> <C-Y>,
 """"""""""""""""""""""""""""""""
 " Ctrl-P
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_working_path_mode = 'ra'
 set wildignore+=*/node_modules/*
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_custom_ignore = {
@@ -406,43 +408,17 @@ let g:javascript_plugin_jsdoc = 1
 let g:mustache_abbreviations = 1
 "///////////////////////////////// Configuration By Pluggin """"
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Extra and Language Functions  """"""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""
-" RemoveFancyCharacters COMMAND
-" Remove smart quotes, etc.
-
-function! RemoveFancyCharacters()
-  let typo = {}
-  let typo["“"] = '"'
-  let typo["”"] = '"'
-  let typo["‘"] = "'"
-  let typo["’"] = "'"
-  let typo["–"] = '--'
-  let typo["—"] = '---'
-  let typo["…"] = '...'
-  :exe ":%s/".join(keys(typo), '\|').'/\=typo[submatch(0)]/ge'
-endfunction
-command! RemoveFancyCharacters :call RemoveFancyCharacters()
-"///////////////////////////// Extra and Language Functions """"
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Personal & Theme Configuration  """"""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 15
 
-" Colors
-"set t_Co=256
-"set background=dark
-"color solarized mustang
-color monokai
-
-command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<CR>
+" NOTE: Delete try/catch statement, is only for autobuild virtualization
+try
+  color monokai
+catch
+endtry
 
 " Highlights underline
 highlight Search guibg=black guifg=yellow gui=bold

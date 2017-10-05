@@ -2,14 +2,13 @@
 Desktop.ini
 desktop.ini
 .DS_Store
+.AppleDouble
+.LSOverride
 .svn
 *~
-.*.swp
 .*.swo
 *.rbc
 *.un~
-*.swp
-*.DS_Store
 *.elc
 *.orig
 *.pyc
@@ -92,20 +91,16 @@ ssh/
 /.toot
 /.tox
 /.trc
-/.vim-fuf-data
-/.vim-tmp
-/.vim/.netrwhist
-/.vimfuzzyfinder
-/.viminfo
-/.vimprojects
-/.vimrc.backup
-/.vimrc.old
 /.viper
 /.wine
 /.wireshark
 /.wireshark-etc
 /.zcompdump
+
+#SASS, CSS and Frameworks
 .sass-cache/
+bootstrap/cache
+bower_components/
 
 ._*
 Thumbs.db
@@ -115,29 +110,110 @@ Thumbs.db
 .Trashes
 composer.lock
 Gemfile.lock
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
-# PHPStorm
-.idea/
-
-###SublimeText###
-*.cache
-Package Control.sublime-settings
-*.sublime-project
-*.sublime-workspace
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+.apdisk
 
 # Node
 node_modules/
+npm-debug.log
+testem.log
 
 # Temporal
 .tmp/
+.htaccess
 
 # videos
 *.mp4
 *.webm
 *.ogg
 
-### Temporal
-.htaccess
+### SublimeText ###
+*.sublime-project
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
 
-##### Vim
+# workspace files are user-specific
+*.sublime-workspace
+
+# sftp configuration file
+sftp-config.json
+
+# Package control specific files
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+Package Control.cache/
+Package Control.ca-certs/
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle
+oscrypto-ca-bundle.crt
+bh_unicode_properties.cache
+
+# Sublime-github package stores a github token in this file
+# https://packagecontrol.io/packages/sublime-github
+GitHub.sublime-settings
+
+.fuse_*
+######### /SublimeText  #########
+
+########## Vim ##########
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
 tags
+
+/.vim-fuf-data
+/.vim-tmp
+/.vim/.netrwhist
+/.vimfuzzyfinder
+/.viminfo
+/.vimprojects
+/.vimrc.backup
+/.vimrc.old
+######### /Vim  #########
+
+########## PHPStorm ##########
+.idea/
+## File-based project format:
+*.iws
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+# Sonarlint plugin
+.idea/sonarlint
+######### /PHPStorm  #########
