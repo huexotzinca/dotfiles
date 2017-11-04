@@ -6,3 +6,5 @@ vim/**
 
 bash/**
 !bash/*.example
+
+tmux/**

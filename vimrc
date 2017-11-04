@@ -9,90 +9,94 @@ endw
 """"""""""""""""""""""""""""""""
 " Enable Pluging Manager
 " First you need install [PLUG](https://github.com/junegunn/vim-plug)
-" Then you can open Vim and run :PlugInstall or :PlugUpdate if you're adding or modifying the plugins
+" Then you can open Vim and run :PlugInstall or :PlugUpdate if you're
+" adding or modifying the plugins
 call plug#begin('~/.vim/plugged')
-  "Plug 'https://github.com/powerline/powerline'
-  " Powerline faster version, but with more additions and themes
+  " Lightweight Powerline alternative and with more additions and themes
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  
-  Plug 'https://github.com/tpope/vim-surround'
 
-  Plug 'https://github.com/tpope/vim-eunuch'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-fugitive'
 
-  Plug 'https://github.com/jiangmiao/auto-pairs'
+  Plug 'jiangmiao/auto-pairs'
 
-  Plug 'https://github.com/tomtom/tcomment_vim'
+  Plug 'tomtom/tcomment_vim'
 
-  Plug 'https://github.com/mattn/emmet-vim'
+  Plug 'mattn/emmet-vim'
 
-  Plug 'https://github.com/tpope/vim-fugitive'
+  Plug 'godlygeek/tabular'
 
-  Plug 'https://github.com/kien/ctrlp.vim'
-  Plug 'https://github.com/tacahiroy/ctrlp-funky'
-  Plug 'https://github.com/sgur/ctrlp-extensions.vim'
+  Plug 'mileszs/ack.vim'
+
+  Plug 'vim-syntastic/syntastic'
+
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+  Plug 'junegunn/fzf.vim'
 
   " syntax and language plugins
-  Plug 'https://github.com/veloce/vim-behat'
-  Plug 'https://github.com/stanangeloff/php.vim'
-  Plug 'https://github.com/pangloss/vim-javascript'
-  Plug 'https://github.com/tpope/vim-rails'
-  Plug 'https://github.com/tomtom/checksyntax_vim/'
-  Plug 'https://github.com/mustache/vim-mustache-handlebars'
-  "Plug 'git@bitbucket.org:huexotzinca/vim-laravel.git'
+  Plug 'tpope/vim-rails'
+  Plug 'veloce/vim-behat'
+  Plug 'stanangeloff/php.vim'
+  Plug 'pangloss/vim-javascript'
+  Plug 'tomtom/checksyntax_vim/'
+  Plug 'mustache/vim-mustache-handlebars'
 
   " Theme plugins
-  Plug 'https://github.com/altercation/vim-colors-solarized'
-  Plug 'https://github.com/antlypls/vim-colors-codeschool'
-  Plug 'https://github.com/crusoexia/vim-monokai'
-  Plug 'https://github.com/encody/nvim'
-  Plug 'https://github.com/carlobaldassi/mustang-vim'
-  Plug 'https://github.com/endel/vim-github-colorscheme'
-  Plug 'https://github.com/vim-scripts/xoria256.vim'
-  Plug 'https://github.com/goatslacker/mango.vim'
+  Plug 'altercation/vim-colors-solarized'
+  Plug 'antlypls/vim-colors-codeschool'
+  Plug 'crusoexia/vim-monokai'
+  Plug 'encody/nvim'
+  Plug 'carlobaldassi/mustang-vim'
+  Plug 'endel/vim-github-colorscheme'
+  Plug 'vim-scripts/xoria256.vim'
+  Plug 'goatslacker/mango.vim'
 call plug#end()
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Main Configuration  """"""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set shellcmdflag=-ic            " Vim acces to .bashrc
-set nocompatible                " Must come first because it changes other options. For no VI
-set hidden                      " Handle multiple buffers better.
-set history=10000               " remember more commands and search history
+" set shellcmdflag=-ic       " Vim acces to .bashrc
+set nocompatible           " Must come first because it changes other options.
+set hidden                 " Handle multiple buffers better.
+set history=10000          " remember more commands and search history
 
-set expandtab                   " Use spaces instead of tabs
-set tabstop=2                   " Global tab width.
-set shiftwidth=2                " And again, related.
-set softtabstop=2               " Global tab back or remove width.
+set expandtab              " Use spaces instead of tabs
+set tabstop=2              " Global tab width.
+set shiftwidth=2           " And again, related.
+set softtabstop=2          " Global tab back or remove width.
 set smarttab
 set autoindent
-set laststatus=2                " Show the status line all the time
+set laststatus=2           " Show the status line all the time
 set showmatch
 
-set incsearch                   " Highlight matches as you type.
-set hlsearch                    " Highlight matches.
+set incsearch              " Highlight matches as you type.
+set hlsearch               " Highlight matches.
 
-set ignorecase                  " Case-insensitive searching.
-set smartcase                   " But case-sensitive if expression contains a capital letter.
+set ignorecase             " Case-insensitive searching.
+set smartcase              " But case-sensitive if expression contains a capital letter.
 
-set cursorline                  " Highlight current line
-set number                      " Show line numbers.
-set ruler                       " Show cursor position.
+set cursorline             " Highlight current line
+set number                 " Show line numbers.
+set relativenumber         " Show line numbres relatives to current line
+set ruler                  " Show cursor position.
 set linespace=14
 set winaltkeys=no
 set autowrite
-set autoread                    " If a file is changed outside of vim, 
-                                " automatically reload it without asking
+set autoread               " If a file is changed outside of vim,
+                           " automatically reload it without asking
 
-set foldmethod=manual           " Turn folding off for real, hopefully
+set foldmethod=manual      " Turn folding off for real, hopefully
 set nofoldenable
 
-set termencoding=utf-8          " set UTF-8 Encode for Terminal and Files
+set termencoding=utf-8     " set UTF-8 Encode for Terminal and Files
 set encoding=utf-8
 
 " Always show tab bar at the top
-set showtabline=2
+set showtabline=0
 set winwidth=79
 
 set complete-=t
@@ -112,7 +116,8 @@ set noerrorbells
 set wildmenu                    " Enhanced command line completion.
 set wildmode=list:longest       " Complete files like a shell.
 
-set splitbelow                  " 
+set splitbelow
+set splitright
 
 set wrap                        " Turn on line wrapping.
 set scrolloff=3                 " keep more context when scrolling off the end of a buffer
@@ -199,6 +204,12 @@ augroup vimrcEx
   autocmd BufRead *.html.js,*.hbs,*.handlebars let b:surround_45 = "{{ \r }}" " Shortcut yss=
   autocmd BufRead *.blade.php,*.blade let b:surround_45 = "{{ \r }}" " Shortcut yss=
 
+  augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  augroup END
+
   """"""""""""""""""""""""""""""""
   "  SYNTAX
 
@@ -215,6 +226,9 @@ augroup vimrcEx
   " Jade Lang
   au BufRead,BufNewFile *.jade setlocal filetype=jade syntax=jade
 
+  " Ruby
+  au BufRead,BufNewFile Gemfile,Guardfile setlocal filetype=ruby
+
 augroup END
 "/////////////////////////////////////// Main Configuration """"
 
@@ -225,13 +239,15 @@ augroup END
 
 " Save time
 nnoremap <space> :
-
-map <leader>y "*y
+noremap <leader>y "*y
 
 " Switch between the last two files
-nmap <leader><leader> <C-^><CR>
+nnoremap <leader>- <C-^><CR>
 
-" Stop F1 
+"Auto change directory to match current file ,cd
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" Stop F1
 nnoremap <F1>  <NOP>
 inoremap <F1>  <NOP>
 vnoremap <F1>  <NOP>
@@ -242,23 +258,21 @@ noremap <down> <NOP>
 noremap <up> <NOP>
 noremap <right> <NOP>
 
-" Find in file all words under the cursor.
-nmap <leader>s :%s/\<<C-R><C-W>\>/
-" And replace with
-nmap <leader><leader>s :%s/\<<C-R><C-W>\>//g<left><left>
+" Replace all words under cursor in current buffer.
+nnoremap <M-r> :%s/\<<C-R><C-W>\>//g<left><left>
 
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
+" Insert a hash rocket with <C-l>
+inoremap <C-l> <space>=><space>
 
 " Switch between splits hjkl
-map <C-h> <C-w>h:vertical resize 80<CR>
-map <C-j> <C-w>j:vertical resize 80<CR>
-map <C-k> <C-w>k:vertical resize 80<CR>
-map <C-l> <C-w>l:vertical resize 80<CR>
+noremap <C-h> <C-w>h:vertical resize 80<CR>
+noremap <C-j> <C-w>j:vertical resize 80<CR>
+noremap <C-k> <C-w>k:vertical resize 80<CR>
+noremap <C-l> <C-w>l:vertical resize 80<CR>
 
 " Quickly go forward or backward to buffer
-nmap <M-PageUp> :bprevious<CR>
-nmap <M-PageDown> :bnext<CR>
+nnoremap <M-PageUp> :bprevious<CR>
+nnoremap <M-PageDown> :bnext<CR>
 
 " Edit or view files in same directory as current file
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -269,18 +283,18 @@ map <leader>v :view %%
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 " Idention Map
-nmap -{ <<
-nmap -} >>
-imap -{<TAB> <ESC><<i
-imap -}<TAB> <ESC>>>i
-vmap -{ <gv
-vmap -} >gv
+nnoremap -{ <<
+nnoremap -} >>
+inoremap -{<TAB> <ESC><<i
+inoremap -}<TAB> <ESC>>>i
+vnoremap -{ <gv
+vnoremap -} >gv
 
-" Toggle show hidden 
-nmap <leader>ll :set list!<CR>
- 
+" Toggle show hidden
+nnoremap <leader>ll :set list!<CR>
+
 "Delete all buffers (via Derek Wyatt)
-nmap <silent> <leader>da :exec "1," . bufnr('$') . "bd"<CR>
+nnoremap <silent> <leader>da :exec "1," . bufnr('$') . "bd"<CR>
 
 " Move current Line with Alt+j or Alt+k
 nnoremap <M-j> :m .+1<CR>==
@@ -290,18 +304,7 @@ inoremap <M-k> <Esc>:m .-2<CR>==gi
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '<-2<CR>gv=gv
 
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-p>"
-  endif
-endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
+inoremap <s-tab> <C-n>
 
 " From  http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html
 " makes * and # work on visual mode too.
@@ -316,8 +319,8 @@ xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
 xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 
 " recursively vimgrep for word under cursor or selection if you hit leader-star
-nmap <leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("<cword>"), '\'), '\n', '\\n', 'g') . '/ **'<CR>
-vmap <leader>* :<C-u>call <SID>VSetSearch()<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
+nnoremap <leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("<cword>"), '\'), '\n', '\\n', 'g') . '/ **'<CR>
+vnoremap <leader>* :<C-u>call <SID>VSetSearch()<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
 "////////////////////////////////////////////////// Mapping """"
 
 
@@ -328,19 +331,9 @@ syntax enable                   " Turn on syntax highlighting.
 filetype plugin indent on       " Turn on file type detection.
 
 """"""""""""""""""""""""""""""""
-" Powerline
-" https://github.com/Lokaltog/powerline/tree/develop/powerline
-"set rtp+=~/src/powerline/powerline/bindings/vim
-"let g:Powerline_symbols = 'fancy'
-"set laststatus=2   " Always show the statusline
-"set encoding=utf-8 " Necessary to show Unicode glyphs
-"set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-
-""""""""""""""""""""""""""""""""
 " Airline
 " https://github.com/vim-airline/vim-airline
-let g:airline_theme='simple'
-" air-line
+let g:airline_theme='badwolf'
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
@@ -350,29 +343,82 @@ endif
 """"""""""""""""""""""""""""""""
 " Emmet
 let g:user_emmet_leader_key='<C-Y>'
-imap <C-E> <C-Y>,
-nmap <C-E> <C-Y>,
-vmap <C-E> <C-Y>,
+inoremap <C-E> <C-Y>,
+nnoremap <C-E> <C-Y>,
+vnoremap <C-E> <C-Y>,
 
 """"""""""""""""""""""""""""""""
-" Ctrl-P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/node_modules/*
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn|tmp|sass-cache)|tmp|node_modules|bower_components|prod|dist|vendor)$',
-  \ 'file': '\v\.(exe|so|dll|git|jpge|jpg|png|ico|pdf|tar|(swp|un)\~)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-nnoremap <leader><C-P> :CtrlPBuffer<CR>
-nnoremap <leader><leader><C-P> :CtrlPMRUFiles<CR>
-nnoremap <C-F8> :CtrlPBufTag<CR>
-nnoremap <leader><C-F8> :CtrlPTag<CR>
-" Ctrl-PFunky
-nnoremap <C-F12> :CtrlPFunky<CR>
-" ctrlp-extensions
-nnoremap <M-v> :CtrlPYankring<CR>
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" """"""""""""""""""""""""""""""""
+" " Ctrl-P
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set wildignore+=*/node_modules/*
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\v[\/](\.(git|hg|svn|tmp|sass-cache)|tmp|node_modules|bower_components|prod|dist|vendor)$',
+"   \ 'file': '\v\.(exe|so|dll|git|jpge|jpg|png|ico|pdf|tar|(swp|un)\~)$',
+"   \ 'link': 'some_bad_symbolic_links',
+"   \ }
+" nnoremap <leader><C-P> :CtrlPBuffer<CR>
+" nnoremap <leader><C-T> :CtrlPBufTag<CR>
+" nnoremap <leader><leader><C-T> :CtrlPTag<CR>
+" " Ctrl-PFunky
+" nnoremap <leader><leader>f :CtrlPFunky<CR>
+" " ctrlp-extensions
+" nnoremap <leader><C-V> :CtrlPYankring<CR>
+"
+""""""""""""""""""""""""""""""""
+" fzf.vim
+
+function! s:update_fzf_colors()
+  let g:fzf_action = 
+  \ { 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
+  let rules =
+  \ { 'fg':      [['Normal',       'fg']],
+    \ 'bg':      [['Normal',       'bg']],
+    \ 'hl':      [['Comment',      'fg']],
+    \ 'fg+':     [['CursorColumn', 'fg'], ['Normal', 'fg']],
+    \ 'bg+':     [['CursorColumn', 'bg']],
+    \ 'hl+':     [['Statement',    'fg']],
+    \ 'info':    [['PreProc',      'fg']],
+    \ 'prompt':  [['Conditional',  'fg']],
+    \ 'pointer': [['Exception',    'fg']],
+    \ 'marker':  [['Keyword',      'fg']],
+    \ 'spinner': [['Label',        'fg']],
+    \ 'header':  [['Comment',      'fg']] }
+  let cols = []
+  for [name, pairs] in items(rules)
+    for pair in pairs
+      let code = synIDattr(synIDtrans(hlID(pair[0])), pair[1])
+      if !empty(name) && code > 0
+        call add(cols, name.':'.code)
+        break
+      endif
+    endfor
+  endfor
+  let s:orig_fzf_default_opts = get(s:, 'orig_fzf_default_opts', $FZF_DEFAULT_OPTS)
+  let $FZF_DEFAULT_OPTS = s:orig_fzf_default_opts .
+        \ empty(cols) ? '' : (' --color='.join(cols, ','))
+endfunction
+
+augroup _fzf
+  autocmd!
+  autocmd ColorScheme * call <sid>update_fzf_colors()
+augroup END
+
+nnoremap <C-P> :Files<CR>
+nnoremap <leader><C-P> :Buffers<CR>
 
 """"""""""""""""""""""""""""""""
 " Vim-eunuch
@@ -388,12 +434,12 @@ nnoremap <leader><M-c> :TCommentBlock<CR>
 vnoremap <leader><M-c> :TCommentBlock<CR>
 
 """"""""""""""""""""""""""""""""
-"Surround
-vmap s S
-nmap <F5> ysiw
-nmap <M-F5> ySiw
-nmap <F6> yss
-nmap <M-F6> ySS
+" Surround Eg. ysiw surround a word, yss surround line
+vnoremap s S
+nnoremap <F5> ysiw
+nnoremap <M-F5> ySiw
+nnoremap <F6> yss
+nnoremap <M-F6> ySS
 
 """"""""""""""""""""""""""""""""
 " vim-behat
@@ -408,6 +454,29 @@ let g:javascript_plugin_jsdoc = 1
 let g:mustache_abbreviations = 1
 "///////////////////////////////// Configuration By Pluggin """"
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Extra and Language Functions  """"""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""
+" RemoveFancyCharacters COMMAND
+" Remove smart quotes, etc.
+function! RemoveFancyCharacters()
+  let typo = {}
+  let typo["“"] = '"'
+  let typo["”"] = '"'
+  let typo["‘"] = "'"
+  let typo["’"] = "'"
+  let typo["–"] = '--'
+  let typo["—"] = '---'
+  let typo["…"] = '...'
+  :exe ":%s/".join(keys(typo), '\|').'/\=typo[submatch(0)]/ge'
+endfunction
+command! RemoveFancyCharacters :call RemoveFancyCharacters()
+"///////////////////////////// Extra and Language Functions """"
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Personal & Theme Configuration  """"""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -416,16 +485,14 @@ set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 15
 
 " NOTE: Delete try/catch statement, is only for autobuild virtualization
 try
+  "set background=dark " This is for solarized theme
   color monokai
 catch
 endtry
 
+command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<CR>
+
 " Highlights underline
 highlight Search guibg=black guifg=yellow gui=bold
-
-""""""""""""""""""""""""""""""""
-" Abbreviations
-iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus, quam at viverra vestibulum, odio magna scelerisque augue, non placerat enim ante nec mi.
-iab llorem  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris faucibus, quam at viverra vestibulum, odio magna scelerisque augue, non placerat enim ante nec mi. Pellentesque magna ante, molestie quis mattis posuere, facilisis vulputate dolor. Vivamus et orci vitae eros ultrices commodo et sed arcu. Fusce tempor volutpat aliquam. In laoreet varius lacus, vitae auctor nisl ultrices lobortis. Vestibulum pretium adipiscing tempor. Proin cursus interdum leo, at scelerisque dui. In et augue placerat lorem pretium commodo. Phasellus neque lectus, mollis quis elit in, semper vestibulum est. Mauris quam tellus, posuere id dictum ac, adipiscing sed tortor. Nunc ipsum mauris, viverra interdum consectetur eu, ornare quis nisl. Sed gravida sollicitudin risus quis sagittis.
 
 "////////////////////////// Personal & Theme Configuration  """"

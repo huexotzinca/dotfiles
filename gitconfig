@@ -1,6 +1,4 @@
 # vim: syntax=config st=2 sw=2
-[user]
-
 [alias]
   # View the current working tree status using the short format
   s = status -s
@@ -43,7 +41,7 @@
 
 [core]
   # Use custom `.gitignore` and `.gitattributes`
-  excludesfile = ~/.gitignore
+	excludesfile = /home/neftali/.gitignore
   attributesfile = ~/.gitattributes
   # Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
   whitespace = space-before-tab,indent-with-non-tab,trailing-space
