@@ -1,3 +1,13 @@
+"
+" ██╗  ██╗██╗   ██╗██╗  ██╗
+" ██║  ██║██║   ██║╚██╗██╔╝
+" ███████║██║   ██║ ╚███╔╝    Neftali Bautsta (@huexotzinca)
+" ██╔══██║██║   ██║ ██╔██╗    http://github.com/huexotzinca
+" ██║  ██║╚██████╔╝██╔╝ ██╗
+" ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
+"
+" My vimrc file
+
 " Enable Alt key for mapping. Fix: the terminator <alt> no support
 let c='a'
 while c <= 'z'
@@ -6,60 +16,66 @@ while c <= 'z'
   let c = nr2char(1+char2nr(c))
 endw
 
-""""""""""""""""""""""""""""""""
-" Enable Pluging Manager
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug For Managing Plugins    """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " First you need install [PLUG](https://github.com/junegunn/vim-plug)
 " Then you can open Vim and run :PlugInstall or :PlugUpdate if you're
 " adding or modifying the plugins
 call plug#begin('~/.vim/plugged')
-  " Lightweight Powerline alternative and with more additions and themes
+  " {{ Lightweight Powerline alternative and with more additions and themes }}
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-eunuch'
-  Plug 'tpope/vim-fugitive'
+  " {{ Tim Pope Plugins }}
+  Plug 'tpope/vim-surround'        " Change surrounding marks
+  Plug 'tpope/vim-repeat'          " For use . command after a plugin map
+  Plug 'tpope/vim-fugitive'        " For use git on vim
 
-  Plug 'jiangmiao/auto-pairs'
-
-  Plug 'tomtom/tcomment_vim'
-
-  Plug 'mattn/emmet-vim'
-
-  Plug 'godlygeek/tabular'
-
-  Plug 'mileszs/ack.vim'
-
-  Plug 'vim-syntastic/syntastic'
-
+  " {{ File Navigation }}
+  Plug 'scrooloose/nerdtree'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
   Plug 'junegunn/fzf.vim'
 
-  " syntax and language plugins
+  " {{ Code }}
+  Plug 'jiangmiao/auto-pairs'      " Insert or delete brackets, parens, quotes in pair. 
+  Plug 'tomtom/tcomment_vim'
+  Plug 'mattn/emmet-vim'
+  Plug 'godlygeek/tabular'
+  Plug 'dense-analysis/ale'        " Error checker
+
+  " {{ System }}
+  Plug 'lambdalisue/vim-manpager'
+
+  " {{ Syntax and Language Plugins }}
   Plug 'tpope/vim-rails'
   Plug 'veloce/vim-behat'
   Plug 'stanangeloff/php.vim'
+  Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install'  }
+  Plug 'jwalton512/vim-blade'
   Plug 'pangloss/vim-javascript'
+  Plug 'mxw/vim-jsx'
   Plug 'tomtom/checksyntax_vim/'
+  Plug 'gcorne/vim-sass-lint'
   Plug 'mustache/vim-mustache-handlebars'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'dag/vim-fish'
+  Plug 'Fymyte/rasi.vim'
 
-  " Theme plugins
+  " {{ Theme plugins }}
   Plug 'altercation/vim-colors-solarized'
   Plug 'antlypls/vim-colors-codeschool'
   Plug 'crusoexia/vim-monokai'
   Plug 'encody/nvim'
   Plug 'carlobaldassi/mustang-vim'
-  Plug 'endel/vim-github-colorscheme'
   Plug 'vim-scripts/xoria256.vim'
   Plug 'goatslacker/mango.vim'
+  Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 call plug#end()
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Main Configuration  """"""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set shellcmdflag=-ic       " Vim acces to .bashrc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Main Configuration    """""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible           " Must come first because it changes other options.
 set hidden                 " Handle multiple buffers better.
 set history=10000          " remember more commands and search history
@@ -91,11 +107,12 @@ set autoread               " If a file is changed outside of vim,
 
 set foldmethod=manual      " Turn folding off for real, hopefully
 set nofoldenable
+set foldlevelstart=1
 
 set termencoding=utf-8     " set UTF-8 Encode for Terminal and Files
 set encoding=utf-8
 
-" Always show tab bar at the top
+" Remove tab bar in favor of use buffer list <leader>fb
 set showtabline=0
 set winwidth=79
 
@@ -127,10 +144,6 @@ if exists('+breakindent')
   set breakindent showbreak=\ +
 endif
 
-" Turn folding off for real, hopefully
-set foldmethod=manual
-set nofoldenable
-
 set tags=tags
 
 " Use the same symbols as TextMate for tabstops and EOLs
@@ -144,10 +157,9 @@ set backupdir=~/.vim-tmp,~/.vim-tmp
 set directory=~/.vim-tmp,~/.vim-tmp
 
 " MAPPING LEADER
-let mapleader=","
-let g:mapleader=","
-"///////////////////////////// Extra and Language Functions """"
-
+let mapleader=" "
+let g:mapleader=" "
+"/////////////////////////////////Main Configuration """"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Configuration By File Type """""""""""""""""""""""""""""""""""
@@ -185,7 +197,7 @@ augroup vimrcEx
   " Bash
   autocmd FileType sh setlocal sw=4 ts=4
   " CSS, SASS and LESS
-  autocmd FileType css,less,sass,scss setlocal sw=4 ts=4
+  autocmd FileType css,less,sass,scss setlocal sw=2 ts=2
   " JavaScript
   autocmd FileType js,javascript setlocal sw=2 ts=2 tw=80 wm=80
   " PHP
@@ -193,7 +205,8 @@ augroup vimrcEx
   " HTML
   autocmd FileType html setlocal sw=4 ts=4 tw=0 wm=0 wrap
   " Ruby and their things
-  autocmd FileType ruby,haml,eruby,yaml,sass,cucumber setlocal et sw=2 ts=2 sts=2
+  autocmd FileType ruby,eruby,cucumber setlocal et sw=2 ts=2 sts=2
+  autocmd FileType haml,yaml setlocal sw=4 ts=4 sts=4
   " Python
   autocmd FileType python set sw=4 sts=4 et
   " Slim
@@ -211,26 +224,21 @@ augroup vimrcEx
   augroup END
 
   """"""""""""""""""""""""""""""""
-  "  SYNTAX
+  ""  SYNTAX
 
   " Behat
   au BufRead,BufNewFile *.feature setlocal filetype=behat
   " SASS-SCSS
   au BufRead,BufNewFile *.scss setlocal filetype=scss
-  " Handlebars
-  au BufRead,BufNewFile *.handlebars,*.hbs setlocal filetype=html.handlebars syntax=mustache | runtime! ftplugin/mustache.vim ftplugin/mustache*.vim ftplugin/mustache/*.vim
-
   " Laravel
   au BufRead,BufNewFile *.blade.php setlocal tw=0 wm=0 wrap syntax=blade filetype=blade
-
   " Jade Lang
   au BufRead,BufNewFile *.jade setlocal filetype=jade syntax=jade
-
   " Ruby
   au BufRead,BufNewFile Gemfile,Guardfile setlocal filetype=ruby
 
 augroup END
-"/////////////////////////////////////// Main Configuration """"
+"///////////////////////////////////////  Configuration By File Type """"
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -238,19 +246,33 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Save time
-nnoremap <space> :
+" Removed in favor of <leader> <space>
 noremap <leader>y "*y
 
 " Switch between the last two files
-nnoremap <leader>- <C-^><CR>
+nnoremap <leader><leader> <C-^><CR>`"
 
-"Auto change directory to match current file ,cd
-nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+" Allow select from list with <Shift-Tab>
+inoremap <S-TAB> <C-n>
+
+" "Auto change directory to match current file ,cd
+" nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
+" " Help on paste
+" inoremap <S-Insert> <ESC>:set pastei
 
 " Stop F1
 nnoremap <F1>  <NOP>
 inoremap <F1>  <NOP>
 vnoremap <F1>  <NOP>
+
+nnoremap <M-F1>  <NOP>
+inoremap <M-F1>  <NOP>
+vnoremap <M-F1>  <NOP>
+
+nnoremap <C-F1>  <NOP>
+inoremap <C-F1>  <NOP>
+vnoremap <C-F1>  <NOP>
 
 " Improve my skills with hjkl
 noremap <left> <NOP>
@@ -259,20 +281,20 @@ noremap <up> <NOP>
 noremap <right> <NOP>
 
 " Replace all words under cursor in current buffer.
-nnoremap <M-r> :%s/\<<C-R><C-W>\>//g<left><left>
+nnoremap <leader>j :%s/\<<C-R><C-W>\>//g<left><left>
 
 " Insert a hash rocket with <C-l>
 inoremap <C-l> <space>=><space>
 
 " Switch between splits hjkl
-noremap <C-h> <C-w>h:vertical resize 80<CR>
-noremap <C-j> <C-w>j:vertical resize 80<CR>
-noremap <C-k> <C-w>k:vertical resize 80<CR>
-noremap <C-l> <C-w>l:vertical resize 80<CR>
+noremap <C-h> <C-w>h<CR>
+noremap <C-j> <C-w>j<CR>
+noremap <C-k> <C-w>k<CR>
+noremap <C-l> <C-w>l<CR>
 
 " Quickly go forward or backward to buffer
-nnoremap <M-PageUp> :bprevious<CR>
-nnoremap <M-PageDown> :bnext<CR>
+nnoremap <leader><PageUp> :bprevious<CR>
+nnoremap <leader><PageDown> :bnext<CR>
 
 " Edit or view files in same directory as current file
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
@@ -303,8 +325,6 @@ inoremap <M-j> <Esc>:m .+1<CR>==gi
 inoremap <M-k> <Esc>:m .-2<CR>==gi
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '<-2<CR>gv=gv
-
-inoremap <s-tab> <C-n>
 
 " From  http://got-ravings.blogspot.com/2008/07/vim-pr0n-visual-search-mappings.html
 " makes * and # work on visual mode too.
@@ -341,13 +361,6 @@ if !exists('g:airline_symbols')
 endif
 
 """"""""""""""""""""""""""""""""
-" Emmet
-let g:user_emmet_leader_key='<C-Y>'
-inoremap <C-E> <C-Y>,
-nnoremap <C-E> <C-Y>,
-vnoremap <C-E> <C-Y>,
-
-""""""""""""""""""""""""""""""""
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -358,24 +371,25 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" """"""""""""""""""""""""""""""""
-" " Ctrl-P
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
-" set wildignore+=*/node_modules/*
-" let g:ctrlp_show_hidden = 1
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\v[\/](\.(git|hg|svn|tmp|sass-cache)|tmp|node_modules|bower_components|prod|dist|vendor)$',
-"   \ 'file': '\v\.(exe|so|dll|git|jpge|jpg|png|ico|pdf|tar|(swp|un)\~)$',
-"   \ 'link': 'some_bad_symbolic_links',
-"   \ }
-" nnoremap <leader><C-P> :CtrlPBuffer<CR>
-" nnoremap <leader><C-T> :CtrlPBufTag<CR>
-" nnoremap <leader><leader><C-T> :CtrlPTag<CR>
-" " Ctrl-PFunky
-" nnoremap <leader><leader>f :CtrlPFunky<CR>
-" " ctrlp-extensions
-" nnoremap <leader><C-V> :CtrlPYankring<CR>
-"
+let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_debug=1
+let g:syntastic_scss_checkers=["sasslint"]
+
+""""""""""""""""""""""""""""""""
+" NERDTree
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.git$','\.idea', '\~$']
+map <M-b> :NERDTreeToggle<CR>
+
+""""""""""""""""""""""""""""""""
+" Emmet
+let g:user_emmet_leader_key='<C-Y>'
+" let g:user_emmet_mode='inv'
+let g:user_emmet_install_global = 0
+autocmd FileType js,html.handlebars,blade,html,less,sass,scss,css EmmetInstall
+imap <C-E> <C-Y>,
+vmap <C-E> <C-Y>,
+
 """"""""""""""""""""""""""""""""
 " fzf.vim
 
@@ -417,8 +431,11 @@ augroup _fzf
   autocmd ColorScheme * call <sid>update_fzf_colors()
 augroup END
 
-nnoremap <C-P> :Files<CR>
-nnoremap <leader><C-P> :Buffers<CR>
+""""""""""""""""""""""""""""""""
+" junegunn/fzf.vim Mapping
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fr :History<CR>
 
 """"""""""""""""""""""""""""""""
 " Vim-eunuch
@@ -435,11 +452,19 @@ vnoremap <leader><M-c> :TCommentBlock<CR>
 
 """"""""""""""""""""""""""""""""
 " Surround Eg. ysiw surround a word, yss surround line
-vnoremap s S
-nnoremap <F5> ysiw
-nnoremap <M-F5> ySiw
-nnoremap <F6> yss
-nnoremap <M-F6> ySS
+vmap s S
+nmap <F5> ysiw
+nmap <M-F5> ySiw
+nmap <F6> yss
+nmap <M-F6> ySS
+
+""""""""""""""""""""""""""""""""
+" vim-jsx
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+""""""""""""""""""""""""""""""""
+" vim-mustache-handlebars
+let g:mustache_abbreviations = 1
 
 """"""""""""""""""""""""""""""""
 " vim-behat
@@ -483,10 +508,14 @@ command! RemoveFancyCharacters :call RemoveFancyCharacters()
 
 set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 15
 
-" NOTE: Delete try/catch statement, is only for autobuild virtualization
+" NOTE: Delete try/catch statement, it is only for autobuild virtualization
 try
-  "set background=dark " This is for solarized theme
   color monokai
+
+  " Next line is for solarized theme
+  " set background=dark
+  " Neft line is for catpuccin theme and you ned to comment color
+  " let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 catch
 endtry
 
